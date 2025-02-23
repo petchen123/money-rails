@@ -3,8 +3,6 @@ require "active_support/core_ext/hash/reverse_merge.rb"
 
 class Money
   class << self
-    alias_method :orig_default_formatting_rules, :default_formatting_rules
-
     def default_formatting_rules
       rules = orig_default_formatting_rules || {}
       defaults = {
@@ -20,6 +18,7 @@ class Money
       end
       rules
     end
+    alias_method :orig_default_formatting_rules, :default_formatting_rules
   end
 
   # This is expected to be called by ActiveSupport when calling as_json an Money object
